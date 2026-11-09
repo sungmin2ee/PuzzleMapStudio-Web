@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
 <link rel="stylesheet" href="style.css?v=20">
-<script defer src="app.js?v=42"></script>
+<script defer src="app.js?v=43"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -57,6 +57,7 @@
       <button id="defineProperty" class="accent">＋ 속성 추가</button>
       <button id="manageProperties">속성 관리</button>
     </div>
+    <section id="levelObjectiveSummary" class="note" aria-label="현재 클리어 목표" aria-live="polite"></section>
     <div id="levelPropertySummary" class="note"></div>
     <div class="note"><h3>작업 저장</h3><p>맵과 이미지는 이 브라우저에 자동 저장됩니다. 다른 기기에서 편집하려면 백업 파일을 가져가세요.</p></div>
   </aside>
