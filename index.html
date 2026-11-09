@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=16">
-<script defer src="app.js?v=38"></script>
+<link rel="stylesheet" href="style.css?v=17">
+<script defer src="app.js?v=39"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -164,8 +164,8 @@
     <label>목표 종류<select id="objectiveType"></select></label>
     <p id="objectiveEmptyHint" class="hint">먼저 목표 종류를 등록해 주세요. 아래 입력란의 collect, 타일 수집은 입력 예시입니다.</p>
     <button id="showObjectiveDefinition" type="button">목표 종류 등록하러 가기</button>
-    <label>대상 키 (선택) · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveTarget" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="red_button"></label>
-    <label>목표 수량<input id="objectiveCount" type="number" min="1" step="1" value="1" required></label>
+    <label id="objectiveTargetField">대상 키 (선택) · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveTarget" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="red_button"></label>
+    <label id="objectiveCountField">목표 수량<input id="objectiveCount" type="number" min="1" step="1" value="1" required></label>
     <button id="addObjective" class="primary wide">이 레벨에 목표 추가</button>
     <button id="cancelObjectiveEdit" type="button" class="wide" hidden>수정 취소</button>
   </form>
@@ -174,6 +174,9 @@
   <form id="objectiveDefinitionForm">
     <label>종류 키 · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveKey" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="collect" required></label>
     <label>표시 이름 (한글 가능, 편집기·백업용)<input id="objectiveLabel" maxlength="80" placeholder="타일 수집" required></label>
+    <label><input id="objectiveUseTarget" type="checkbox" checked> 대상 사용</label>
+    <label><input id="objectiveUseCount" type="checkbox" checked> 수량 사용</label>
+    <p class="hint">체크메이트·대국 승리처럼 달성 여부만 판단하면 수량 사용을 끄세요. 사용을 끈 기존 값은 백업에 보관하고 게임용 JSON에서 제외합니다. 수량을 새로 켠 목표의 기본값은 1입니다.</p>
     <button id="saveObjectiveDefinition" class="wide">목표 종류 추가</button>
     <button id="cancelObjectiveDefinitionEdit" type="button" class="wide" hidden>수정 취소</button>
   </form>
@@ -182,3 +185,4 @@
 </dialog>
 
 </html>
+
