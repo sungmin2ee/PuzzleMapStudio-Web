@@ -3,11 +3,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=2">
-<script defer src="app.js?v=2"></script>
+<link rel="stylesheet" href="style.css?v=3">
+<script defer src="app.js?v=3"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
-  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export" class="primary">JSON 내보내기 ↓</button></nav>
+  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export" class="primary">현재 레벨 JSON ↓</button></nav>
 </header>
 <main>
   <aside>
@@ -18,6 +18,10 @@
   </aside>
   <section class="editor">
     <div class="section-title"><div><small>WORKSPACE</small><h1>맵 편집</h1></div><span id="status" role="status">저장소 여는 중</span></div>
+    <div class="level-picker">
+      <select id="levelSelect" aria-label="편집할 레벨"></select>
+      <button id="addLevel" class="accent">＋ 레벨 추가</button>
+    </div>
     <div class="toolbar" aria-label="편집 도구">
       <button id="paint" aria-pressed="true">배치</button><button id="erase" aria-pressed="false">지우기</button>
       <button id="rotate">↻ <span>0°</span></button><button id="undo">실행 취소</button>
