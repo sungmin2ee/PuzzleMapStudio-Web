@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=5">
-<script defer src="app.js?v=5"></script>
+<link rel="stylesheet" href="style.css?v=6">
+<script defer src="app.js?v=6"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -26,6 +26,11 @@
       <button id="paint" aria-pressed="true">배치</button><button id="erase" aria-pressed="false">지우기</button>
       <button id="rotate">↻ <span>0°</span></button><button id="undo">실행 취소</button>
       <button id="inspect" aria-pressed="false">칸·타일 속성</button>
+      <button id="resetBoard">판 초기화</button>
+    </div>
+    <div id="cellOverlayControls" class="cell-overlay-controls" hidden>
+      <label>격자에 표시할 칸 속성<select id="cellOverlay"></select></label>
+      <span id="cellOverlayLegend"></span>
     </div>
     <div class="board-area"><div id="grid" aria-label="맵 격자"></div></div>
     <div class="board-footer"><span id="info"></span><span>좌표 원점 · 왼쪽 위</span></div>
