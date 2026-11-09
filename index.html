@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=7">
-<script defer src="app.js?v=7"></script>
+<link rel="stylesheet" href="style.css?v=8">
+<script defer src="app.js?v=8"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -46,6 +46,7 @@
     <div class="property-actions">
       <button id="levelProperties">레벨 속성</button>
       <button id="defineProperty" class="accent">＋ 속성 정의</button>
+      <button id="manageProperties">속성 지우기</button>
     </div>
     <div id="levelPropertySummary" class="note"></div>
     <div class="note"><h3>작업 저장</h3><p>맵과 이미지는 이 브라우저에 자동 저장됩니다. 다른 기기에서 편집하려면 백업 파일을 가져가세요.</p></div>
@@ -98,6 +99,14 @@
     <div id="propertyFields"></div>
     <p id="propertyError" class="property-error" role="alert"></p>
     <button id="saveProperties" class="primary wide">속성 저장</button>
+  </form>
+</dialog>
+<dialog id="propertyManageDialog">
+  <form id="propertyManageForm">
+    <div class="section-title"><h2>속성 정의 지우기</h2><button type="button" data-close="propertyManageDialog" aria-label="닫기">✕</button></div>
+    <label>삭제할 속성<select id="removePropertySelect" required></select></label>
+    <p class="hint">선택한 정의와 이 프로젝트의 모든 레벨에 저장된 해당 값이 삭제됩니다.</p>
+    <button class="wide">속성 정의 지우기</button>
   </form>
 </dialog>
 </html>
