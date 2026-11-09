@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
 <link rel="stylesheet" href="style.css?v=16">
-<script defer src="app.js?v=36"></script>
+<script defer src="app.js?v=37"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -162,6 +162,8 @@
   <ul id="objectiveItems"></ul>
   <form id="objectiveItemForm">
     <label>목표 종류<select id="objectiveType"></select></label>
+    <p id="objectiveEmptyHint" class="hint">먼저 목표 종류를 등록해 주세요. 아래 입력란의 collect, 타일 수집은 입력 예시입니다.</p>
+    <button id="showObjectiveDefinition" type="button">목표 종류 등록하러 가기</button>
     <label>대상 키 (선택) · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveTarget" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="red_button"></label>
     <label>목표 수량<input id="objectiveCount" type="number" min="1" step="1" value="1" required></label>
     <button id="addObjective" class="primary wide">이 레벨에 목표 추가</button>
