@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=6">
-<script defer src="app.js?v=6"></script>
+<link rel="stylesheet" href="style.css?v=7">
+<script defer src="app.js?v=7"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -29,7 +29,7 @@
       <button id="resetBoard">판 초기화</button>
     </div>
     <div id="cellOverlayControls" class="cell-overlay-controls" hidden>
-      <label>격자에 표시할 칸 속성<select id="cellOverlay"></select></label>
+      <label>격자에 표시할 속성<select id="cellOverlay"></select></label>
       <span id="cellOverlayLegend"></span>
     </div>
     <div class="board-area"><div id="grid" aria-label="맵 격자"></div></div>
@@ -47,6 +47,7 @@
       <button id="levelProperties">레벨 속성</button>
       <button id="defineProperty" class="accent">＋ 속성 정의</button>
     </div>
+    <div id="levelPropertySummary" class="note"></div>
     <div class="note"><h3>작업 저장</h3><p>맵과 이미지는 이 브라우저에 자동 저장됩니다. 다른 기기에서 편집하려면 백업 파일을 가져가세요.</p></div>
   </aside>
 </main>
