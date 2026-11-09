@@ -4,10 +4,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
 <link rel="stylesheet" href="style.css?v=15">
-<script defer src="app.js?v=20"></script>
+<script defer src="app.js?v=21"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
-  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
+  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
 </header>
 <main>
   <aside>
@@ -122,6 +122,21 @@
     <div class="section-title"><h2>속성 관리</h2><button type="button" data-close="propertyManageDialog" aria-label="닫기">✕</button></div>
     <label>관리할 속성<select id="removePropertySelect" required></select></label>
     <div class="pair"><button id="editPropertyDefinition" class="primary">속성 편집</button><button id="deletePropertyDefinition">속성 정의 지우기</button></div>
+  </form>
+</dialog>
+<dialog id="rulesDialog">
+  <div class="section-title"><h2>프로젝트 검사 규칙</h2><button type="button" data-close="rulesDialog" aria-label="닫기">✕</button></div>
+  <p class="hint">모든 레벨에 각각 적용됩니다. 체크박스 속성은 체크된 곳만 셉니다.</p>
+  <ul id="rulesList"></ul>
+  <form id="ruleForm">
+    <label>검사 대상 종류<select name="scope"><option value="cell">칸 속성</option><option value="placement">타일 종류</option><option value="tile">배치 타일 속성</option><option value="level">레벨 속성</option></select></label>
+    <label>검사 대상<select name="target" required></select></label>
+    <div class="pair">
+      <label>개수 조건<select name="comparison"><option value="min">최소</option><option value="exact">정확히</option><option value="max">최대</option></select></label>
+      <label>개수<input name="count" type="number" value="1" min="0" step="1" required></label>
+    </div>
+    <p id="ruleError" class="property-error" role="alert"></p>
+    <button id="addRule" class="primary wide">규칙 추가</button>
   </form>
 </dialog>
 <dialog id="exportCheckDialog">
