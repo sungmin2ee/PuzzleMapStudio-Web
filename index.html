@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>퍼즐 맵 스튜디오</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="app.js"></script>
+<header>
+  <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
+  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export" class="primary">JSON 내보내기 ↓</button></nav>
+</header>
+<main>
+  <aside>
+    <div class="section-title"><h2>타일 팔레트</h2><button id="add" class="accent" aria-label="타일 등록">＋</button></div>
+    <p class="hint">타일을 골라 격자에 배치하세요.</p>
+    <div id="palette" aria-label="타일 팔레트"></div>
+    <button id="edit" class="wide">선택한 타일 수정</button>
+  </aside>
+  <section class="editor">
+    <div class="section-title"><div><small>WORKSPACE</small><h1>맵 편집</h1></div><span id="status" role="status">저장소 여는 중</span></div>
+    <div class="toolbar" aria-label="편집 도구">
+      <button id="paint" aria-pressed="true">배치</button><button id="erase" aria-pressed="false">지우기</button>
+      <button id="rotate">↻ <span>0°</span></button><button id="undo">실행 취소</button>
+    </div>
+    <div class="board-area"><div id="grid" aria-label="맵 격자"></div></div>
+    <div class="board-footer"><span id="info"></span><span>좌표 원점 · 왼쪽 위</span></div>
+    <p id="message" aria-live="polite"></p>
+  </section>
+  <aside>
+    <h2>맵 설정</h2>
+    <form id="settings">
+      <label>레벨 이름<input name="title" maxlength="80" required></label>
+      <div class="pair"><label>열<input name="cols" type="number" min="1" max="32" required></label><label>행<input name="rows" type="number" min="1" max="32" required></label></div>
+      <button class="wide">설정 적용</button>
+    </form>
+    <div class="note"><h3>작업 저장</h3><p>맵과 이미지는 이 브라우저에 자동 저장됩니다. 다른 기기에서 편집하려면 백업 파일을 가져가세요.</p></div>
+  </aside>
+</main>
+<input id="projectFile" type="file" accept=".puzzlemap" hidden>
+<dialog id="tileDialog">
+  <form id="tileForm">
+    <div class="section-title"><h2 id="dialogTitle">타일 등록</h2><button id="close" type="button" aria-label="닫기">✕</button></div>
+    <label>타일 ID<input name="id" pattern="[a-zA-Z0-9_\\-]{1,48}" maxlength="48" placeholder="ice_block" required></label>
+    <label>표시 이름<input name="title" maxlength="60" placeholder="얼음 블록" required></label>
+    <div class="pair"><label>가로 칸<input name="width" type="number" min="1" max="32" value="1" required></label><label>세로 칸<input name="height" type="number" min="1" max="32" value="1" required></label></div>
+    <label>미리보기 이미지<input name="image" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></label>
+    <p class="hint">PNG · JPG · WebP · GIF / 파일당 2MB</p>
+    <p id="tileError" role="alert"></p>
+    <button id="saveTile" class="primary wide">타일 저장</button>
+  </form>
+</dialog>
+</html>
