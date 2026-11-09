@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
 <link rel="stylesheet" href="style.css?v=16">
-<script defer src="app.js?v=33"></script>
+<script defer src="app.js?v=34"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -52,6 +52,7 @@
       <button class="wide">설정 적용</button>
     </form>
     <div class="property-actions">
+      <button id="editObjectives" type="button">클리어 목표</button>
       <button id="levelProperties">레벨 속성</button>
       <button id="defineProperty" class="accent">＋ 속성 정의</button>
       <button id="manageProperties">속성 관리</button>
@@ -154,4 +155,26 @@
   <p id="exportCheckSummary" class="hint" role="status"></p>
   <ul id="exportCheckIssues"></ul>
 </dialog>
+<dialog id="objectivesDialog">
+  <div class="section-title"><h2>레벨 클리어 목표</h2><button type="button" data-close="objectivesDialog" aria-label="닫기">✕</button></div>
+  <label>완료 조건<select id="objectiveMode"><option value="none">목표 없음</option><option value="all">모두 달성</option><option value="any">하나 이상 달성</option></select></label>
+  <p class="hint">변경 즉시 자동 저장됩니다. 목표 없음에서는 등록한 목록을 보관하며 게임용 JSON에는 빈 목록을 내보냅니다.</p>
+  <ul id="objectiveItems"></ul>
+  <form id="objectiveItemForm">
+    <label>목표 종류<select id="objectiveType"></select></label>
+    <label>대상 키 (선택) · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveTarget" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="red_button"></label>
+    <label>목표 수량<input id="objectiveCount" type="number" min="1" step="1" value="1" required></label>
+    <button id="addObjective" class="primary wide">이 레벨에 목표 추가</button>
+  </form>
+  <h3>프로젝트 목표 종류</h3>
+  <ul id="objectiveDefinitionsList"></ul>
+  <form id="objectiveDefinitionForm">
+    <label>종류 키 · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveKey" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="collect" required></label>
+    <label>표시 이름 (한글 가능, 편집기·백업용)<input id="objectiveLabel" maxlength="80" placeholder="타일 수집" required></label>
+    <button class="wide">목표 종류 추가</button>
+  </form>
+  <p class="hint">대상 키는 게임에서 해석할 식별자입니다. 목표 종류의 동작과 달성 판정은 게임 코드에서 구현합니다.</p>
+  <p id="objectiveError" class="property-error" role="alert"></p>
+</dialog>
+
 </html>
