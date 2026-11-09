@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=12">
-<script defer src="app.js?v=13"></script>
+<link rel="stylesheet" href="style.css?v=13">
+<script defer src="app.js?v=14"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -89,7 +89,7 @@
     <label>속성<select id="batchPropertyKey" required></select></label>
     <label id="batchPropertyValue">적용할 값</label>
     <p id="batchError" class="property-error" role="alert"></p>
-    <div class="pair"><button class="primary">값 적용</button><button id="batchRemove" formnovalidate>값 지우기</button></div>
+    <div class="pair"><button id="batchApply" class="primary">값 적용</button><button id="batchRemove" formnovalidate>값 지우기</button></div>
   </form>
 </dialog>
 <dialog id="propertyDefinition">
@@ -98,7 +98,7 @@
     <label>적용 대상<select name="scope"><option value="level">레벨</option><option value="cell">칸</option><option value="tile">배치 타일</option></select></label>
     <label>속성 키<input name="key" required maxlength="48" placeholder="gravity"></label>
     <label>표시 이름<input name="label" maxlength="60" placeholder="중력 방향"></label>
-    <label>값 형식<select name="type"><option value="text">텍스트</option><option value="number">숫자</option><option value="boolean">체크박스</option><option value="select">선택 목록</option></select></label>
+    <label>값 형식<select name="type"><option value="text">텍스트</option><option value="number">숫자</option><option value="boolean">체크박스</option><option value="select">선택 목록</option><option value="flag">값 없음 (태그)</option></select></label>
     <label id="propertyOptions" hidden>선택 항목 (한 줄에 하나)<textarea name="options" rows="4" maxlength="4096" placeholder="down&#10;left&#10;right"></textarea></label>
     <p id="definitionError" class="property-error" role="alert"></p>
     <button class="primary wide">속성 추가</button>
