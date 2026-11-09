@@ -3,11 +3,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=13">
-<script defer src="app.js?v=18"></script>
+<link rel="stylesheet" href="style.css?v=14">
+<script defer src="app.js?v=19"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
-  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
+  <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
 </header>
 <main>
   <aside>
@@ -22,6 +22,8 @@
       <select id="levelSelect" aria-label="편집할 레벨"></select>
       <button id="addLevel" class="accent">＋ 레벨 추가</button>
       <button id="duplicateLevel">레벨 복제</button>
+      <button id="moveLevelUp" aria-label="레벨을 목록에서 앞으로 이동" title="앞으로 이동">↑</button>
+      <button id="moveLevelDown" aria-label="레벨을 목록에서 뒤로 이동" title="뒤로 이동">↓</button>
     </div>
     <div class="toolbar" aria-label="편집 도구">
       <button id="paint" aria-pressed="true">배치</button><button id="erase" aria-pressed="false">지우기</button>
@@ -121,5 +123,10 @@
     <label>관리할 속성<select id="removePropertySelect" required></select></label>
     <div class="pair"><button id="editPropertyDefinition" class="primary">속성 편집</button><button id="deletePropertyDefinition">속성 정의 지우기</button></div>
   </form>
+</dialog>
+<dialog id="exportCheckDialog">
+  <div class="section-title"><h2>내보내기 전 검사</h2><button type="button" data-close="exportCheckDialog" aria-label="닫기">✕</button></div>
+  <p id="exportCheckSummary" class="hint" role="status"></p>
+  <ul id="exportCheckIssues"></ul>
 </dialog>
 </html>
