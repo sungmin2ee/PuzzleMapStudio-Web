@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
 <link rel="stylesheet" href="style.css?v=13">
-<script defer src="app.js?v=16"></script>
+<script defer src="app.js?v=17"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -21,6 +21,7 @@
     <div class="level-picker">
       <select id="levelSelect" aria-label="편집할 레벨"></select>
       <button id="addLevel" class="accent">＋ 레벨 추가</button>
+      <button id="duplicateLevel">레벨 복제</button>
     </div>
     <div class="toolbar" aria-label="편집 도구">
       <button id="paint" aria-pressed="true">배치</button><button id="erase" aria-pressed="false">지우기</button>
