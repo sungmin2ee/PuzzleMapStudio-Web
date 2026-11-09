@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
-<link rel="stylesheet" href="style.css?v=18">
-<script defer src="app.js?v=40"></script>
+<link rel="stylesheet" href="style.css?v=19">
+<script defer src="app.js?v=41"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -158,40 +158,44 @@
 <dialog id="objectivesDialog">
   <div class="section-title"><h2>레벨 클리어 목표</h2><button type="button" data-close="objectivesDialog" aria-label="닫기">✕</button></div>
   <label>완료 조건<select id="objectiveMode"><option value="none">목표 없음</option><option value="all">모두 달성</option><option value="any">하나 이상 달성</option></select></label>
-  <p class="hint">변경 즉시 자동 저장됩니다. 목표 없음에서는 등록한 목록을 보관하며 게임용 JSON에는 빈 목록을 내보냅니다.</p>
+  <p class="hint">변경 사항은 자동 저장됩니다.</p>
   <ul id="objectiveItems"></ul>
-  <form id="objectiveItemForm">
+  <div class="objective-toolbar"><button id="newObjective" class="primary" type="button">+ 목표 추가</button><button id="showObjectiveDefinition" type="button">종류 관리</button></div>
+  <form id="objectiveItemForm" class="objective-editor" hidden>
+    <h3 id="objectiveEditorTitle">목표 추가</h3>
     <label>목표 종류<select id="objectiveType"></select></label>
-    <p id="objectiveEmptyHint" class="hint">처음이라면 ‘목표 종류 만들기·관리’에서 예시를 골라 시작하세요.</p>
-    <button id="showObjectiveDefinition" type="button">목표 종류 만들기·관리</button>
+    <p id="objectiveEmptyHint" class="hint">등록된 종류가 없습니다. ‘종류 관리’에서 먼저 만들어 주세요.</p>
+
     <label id="objectiveTileField">어떤 타일인가요?<select id="objectiveTile" required></select><span id="objectiveTileImage"></span></label>
-    <label id="objectiveTargetField">대상 키 (선택) · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveTarget" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="red_button"></label>
+    <label id="objectiveTargetField">대상 키 (선택)<input id="objectiveTarget" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="예: black · 영문·숫자·_·-"></label>
     <label id="objectiveCountField">목표 수량<input id="objectiveCount" type="number" min="1" step="1" value="1" required></label>
     <p id="objectivePreview" class="note" aria-live="polite"></p>
-    <button id="addObjective" class="primary wide">이 레벨에 목표 추가</button>
-    <button id="cancelObjectiveEdit" type="button" class="wide" hidden>수정 취소</button>
+    <button id="addObjective" class="primary wide">추가</button>
+    <button id="cancelObjectiveEdit" type="button" class="wide">취소</button>
   </form>
-  <details><summary>ⓘ 목표는 어떻게 동작하나요?</summary><p class="hint">여기서는 게임에 전달할 클리어 조건을 작성합니다. 게임에서는 각 종류 키에 맞는 판정 코드를 연결해야 합니다. 모두 달성은 목록의 모든 조건, 하나 이상 달성은 조건 중 하나를 만족하면 완료입니다.</p></details>
+  <details><summary>ⓘ 목표는 어떻게 동작하나요?</summary><p class="hint">여기서는 게임에 전달할 클리어 조건을 작성합니다. 게임에서는 각 종류 키에 맞는 판정 코드를 연결해야 합니다. 모두 달성은 목록의 모든 조건, 하나 이상 달성은 조건 중 하나를 만족하면 완료입니다. 목표 없음은 등록한 목록을 보관하지만 게임용 JSON에는 빈 목록을 내보냅니다.</p></details>
   <p id="objectiveError" class="property-error" role="alert"></p>
 </dialog>
 <dialog id="objectiveDefinitionsDialog">
-  <div class="section-title"><h2>목표 종류 만들기·관리</h2><button type="button" data-close="objectiveDefinitionsDialog" aria-label="닫기">✕</button></div>
-  <p class="hint">목표 종류는 모든 레벨에서 함께 사용합니다. 종류를 만든 뒤 이전 창에서 이 레벨의 목표를 추가하세요.</p>
-  <h3>등록한 종류</h3>
+  <div class="section-title"><h2>목표 종류 관리</h2><button type="button" data-close="objectiveDefinitionsDialog" aria-label="닫기">✕</button></div>
+  <p class="hint">모든 레벨에서 함께 사용하는 목표 종류입니다.</p>
+
   <ul id="objectiveDefinitionsList"></ul>
-  <form id="objectiveDefinitionForm">
+  <button id="newObjectiveDefinition" class="primary wide" type="button">+ 새 종류 만들기</button>
+  <form id="objectiveDefinitionForm" class="objective-editor" hidden>
+    <h3 id="objectiveDefinitionTitle">새 종류 만들기</h3>
     <label>예시로 시작하기<select id="objectiveExample"><option value="">직접 만들기</option><option value="collect">타일 수집</option><option value="score">목표 점수 달성</option><option value="board_full">모든 칸 채우기</option><option value="win_match">대국 승리</option></select></label>
-    <label>종류 키 · JSON에는 영문·숫자·밑줄·하이픈만 사용<input id="objectiveKey" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="collect" required></label>
-    <label>표시 이름 (한글 가능, 편집기·백업용)<input id="objectiveLabel" maxlength="80" placeholder="타일 수집" required></label>
+    <label>종류 키 · 영문·숫자·_·-<input id="objectiveKey" maxlength="48" pattern="[a-zA-Z0-9_-]+" placeholder="collect" required></label>
+    <label>표시 이름 (한글 가능)<input id="objectiveLabel" maxlength="80" placeholder="타일 수집" required></label>
     <label>무엇을 대상으로 하나요?<select id="objectiveTargetMode"><option value="none">대상 없음</option><option value="tile">타일 선택</option><option value="text">직접 입력</option></select></label>
-    <p class="hint">타일 선택은 팔레트에서 고릅니다. 직접 입력은 black처럼 게임에서 정한 대상을 입력할 때 사용합니다.</p>
+
     <label>몇 개·몇 점이 필요한가요?<select id="objectiveUseCount"><option value="none">수량 없음 — 달성 여부만 확인</option><option value="count">수량 입력 — 개수·점수 등</option></select></label>
     <p id="objectiveDefinitionPreview" class="note" aria-live="polite"></p>
-    <p class="hint">체크메이트·대국 승리처럼 달성 여부만 판단하면 ‘수량 없음’을 선택하세요. 사용을 끈 기존 값은 백업에 보관하고 게임용 JSON에서 제외합니다. 수량을 새로 켠 목표의 기본값은 1입니다.</p>
+    <details><summary>ⓘ 대상과 수량 설정 도움말</summary><p class="hint">타일 선택: 팔레트의 타일을 고릅니다. 직접 입력: black 같은 게임의 대상 키를 씁니다. 체크메이트·대국 승리는 대상과 수량 없이 사용할 수 있습니다. 사용을 끈 기존 값은 백업에 보관하고 게임용 JSON에서 제외합니다.</p></details>
     <button id="saveObjectiveDefinition" class="wide">목표 종류 추가</button>
-    <button id="cancelObjectiveDefinitionEdit" type="button" class="wide" hidden>수정 취소</button>
+    <button id="cancelObjectiveDefinitionEdit" type="button" class="wide">취소</button>
   </form>
-  <p class="hint">대상 키는 게임에서 해석할 식별자입니다. 목표 종류의 동작과 달성 판정은 게임 코드에서 구현합니다.</p>
+
   <p id="objectiveDefinitionError" class="property-error" role="alert"></p>
 </dialog>
 
