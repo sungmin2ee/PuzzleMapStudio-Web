@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>퍼즐 맵 스튜디오</title>
 <link rel="stylesheet" href="style.css?v=15">
-<script defer src="app.js?v=25"></script>
+<script defer src="app.js?v=26"></script>
 <header>
   <div class="brand"><b class="logo">▦</b><div><strong>퍼즐 맵 스튜디오</strong><small>LEVEL EDITOR / V1</small></div></div>
   <nav><button id="open">프로젝트 열기</button><button id="backup">백업 저장</button><button id="manageRules">검사 규칙</button><button id="checkExport">내보내기 전 검사</button><button id="export">현재 레벨 JSON ↓</button><button id="exportAll" class="primary">전체 레벨 JSON ↓</button></nav>
@@ -15,6 +15,7 @@
     <p class="hint">타일을 골라 격자에 배치하세요.</p>
     <div id="palette" aria-label="타일 팔레트"></div>
     <button id="edit" class="wide">선택한 타일 수정</button>
+    <button id="deleteTile" class="wide">선택한 타일 삭제</button>
   </aside>
   <section class="editor">
     <div class="section-title"><div><small>WORKSPACE</small><h1>맵 편집</h1></div><span id="status" role="status">저장소 여는 중</span></div>
@@ -123,6 +124,12 @@
     <label>관리할 속성<select id="removePropertySelect" required></select></label>
     <div class="pair"><button id="editPropertyDefinition" class="primary">속성 편집</button><button id="deletePropertyDefinition">속성 정의 지우기</button></div>
   </form>
+</dialog>
+<dialog id="deleteTileDialog">
+  <div class="section-title"><h2>팔레트 타일 삭제</h2><button type="button" data-close="deleteTileDialog" aria-label="닫기">✕</button></div>
+  <p id="deleteTileSummary" class="hint"></p>
+  <ul id="deleteTileUsage"></ul>
+  <button id="confirmDeleteTile" class="wide">타일 삭제</button>
 </dialog>
 <dialog id="rulesDialog">
   <div class="section-title"><h2 id="rulesTitle">레벨 검사 규칙</h2><button type="button" data-close="rulesDialog" aria-label="닫기">✕</button></div>
